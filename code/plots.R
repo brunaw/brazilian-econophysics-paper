@@ -18,18 +18,19 @@ p3 <- fig_3 %>%
   group_by(genre) %>% 
   mutate(mean_val = mean(value)) %>% 
   ggplot(aes(x = ind, y = value)) +
-  geom_line(aes(y = mean_val), colour = 1, 
+  geom_hline(aes(yintercept = 0.5), colour = 1, 
             size = 0.5, linetype = "dashed") +
   geom_line(colour = "#f5c04a", size = 0.5) +
   facet_wrap( ~ genre, scales = 'free_x', ncol = 2) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 15)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 7)) +
+  #scale_y_continuous(breaks = seq(0, 1, by = 0.1)) +
+  ylim(0, 1) +
   theme_minimal(18) +
   theme(axis.text.x = element_text(angle = 90),
         strip.text  = element_text(face = 'bold')) +
   labs(x = "Time", y = "DFA exponents")
 
-
+p3
 ggsave(plot = p3, filename = "plots/figure_3.pdf", 
        width = 13, height = 10)
 
@@ -47,7 +48,8 @@ p4 <- fig_4 %>%
   geom_line(colour = "#f5c04a", size = 0.8) +
   facet_wrap( ~ genre, scales = 'free_x', ncol = 2) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 15)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 7)) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 7)) +
+  ylim(0, 1) +
   theme_minimal(18) +
   theme(axis.text.x = element_text(angle = 90),
         strip.text  = element_text(face = 'bold')) +
@@ -68,17 +70,18 @@ p5 <- fig_5 %>%
   group_by(genre) %>% 
   mutate(mean_val = mean(value)) %>% 
   ggplot(aes(x = ind, y = value)) +
-  geom_line(aes(y = mean_val), colour = 1, 
+  geom_hline(aes(yintercept = 0.5), colour = 1, 
            size = 0.3, linetype = "dashed") +
   geom_line(colour = "#f5c04a", size = 0.5) +
   facet_wrap( ~ genre, scales = 'free_x', ncol = 2) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 15)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 7)) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 7)) +
+  ylim(0, 1) + 
   theme_minimal(18) +
   theme(axis.text.x = element_text(angle = 90),
         strip.text  = element_text(face = 'bold')) +
   labs(x = "Time", y = "DFA exponents")
 
-#p5
+p5
 ggsave(plot = p5, filename = "plots/figure_5.pdf", 
-       width = 7, height = 5)
+       width = 8, height = 5)
